@@ -1,0 +1,82 @@
+name: Workday Reporting API
+description: APIs for accessing Workday reporting functionality including custom reports, report data extraction, and report management
+image: https://www.workday.com/content/dam/web/en-us/images/misc/workday-logo.svg
+created: '2024'
+modified: '2024'
+specificationVersion: '0.18'
+url: https://apis.workday.com/apis.json
+tags:
+- reporting
+- analytics
+- business intelligence
+- hr data
+- financial reporting
+apis:
+- name: Workday Report as a Service (RaaS)
+  description: REST API for retrieving report data from custom reports in Workday
+  image: https://www.workday.com/content/dam/web/en-us/images/misc/workday-logo.svg
+  humanURL: https://community.workday.com/sites/default/files/file-hosting/productionapi/Reporting/v1/index.html
+  baseURL: https://wd2-impl-services1.workday.com/ccx/service/{tenant}/Reporting
+  tags:
+  - reports
+  - raas
+  - data extraction
+  - rest
+  properties:
+  - type: Documentation
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Reporting/v1/index.html
+  - type: OpenAPI
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Reporting/v1/Reporting.yaml
+  - type: Authentication
+    url: https://doc.workday.com/admin-guide/en-us/lef1569276711011/kqh1569276711095.html
+  contact:
+  - FN: Workday Support
+    email: support@workday.com
+    url: https://community.workday.com
+- name: Workday Custom Reports API
+  description: API for managing and executing custom reports programmatically
+  image: https://www.workday.com/content/dam/web/en-us/images/misc/workday-logo.svg
+  humanURL: https://doc.workday.com/reader/J1YvI9CYZUWl1U7_PSHyHA/sxVLLu9fFSJM5BffiOZwmA
+  baseURL: https://wd2-impl-services1.workday.com/ccx/service/{tenant}
+  tags:
+  - custom reports
+  - report execution
+  - soap
+  properties:
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvI9CYZUWl1U7_PSHyHA/sxVLLu9fFSJM5BffiOZwmA
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Report_as_a_Service/Report_as_a_Service.html
+  - type: Authentication
+    url: https://doc.workday.com/admin-guide/en-us/lef1569276711011/kqh1569276711095.html
+- name: Workday Advanced Reports API
+  description: API for accessing advanced reporting features including matrix reports and composite reports
+  image: https://www.workday.com/content/dam/web/en-us/images/misc/workday-logo.svg
+  humanURL: https://doc.workday.com/reader/wsiU0cn5CkB~MbuzChYv1w/_YO8X6WAWjLFBkBLamVxkw
+  baseURL: https://wd2-impl-services1.workday.com/ccx/service/{tenant}
+  tags:
+  - advanced reporting
+  - matrix reports
+  - composite reports
+  properties:
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cn5CkB~MbuzChYv1w/_YO8X6WAWjLFBkBLamVxkw
+  - type: Guides
+    url: https://doc.workday.com/reader/wsiU0cn5CkB~MbuzChYv1w/root_landing.html
+common:
+- type: Developer Portal
+  url: https://developer.workday.com
+- type: Community
+  url: https://community.workday.com
+- type: Authentication
+  url: https://doc.workday.com/admin-guide/en-us/lef1569276711011/kqh1569276711095.html
+- type: Rate Limits
+  url: https://doc.workday.com/reader/J1YvI9CYZUWl1U7_PSHyHA/f8K9WJ7Kh5FfQDNnvlHNFQ
+- type: Status Page
+  url: https://status.workday.com
+- type: Support
+  url: https://www.workday.com/en-us/customer-experience/support.html
+maintainers:
+- FN: Workday Inc
+  email: developer@workday.com
+  url: https://developer.workday.com
