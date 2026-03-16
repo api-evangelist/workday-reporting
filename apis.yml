@@ -1,5 +1,5 @@
 aid: workday-reporting
-name: Workday Reporting API
+name: Workday Reporting
 description: APIs for accessing Workday reporting functionality including custom reports, report data extraction, and report management
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 created: '2024-01-01'
