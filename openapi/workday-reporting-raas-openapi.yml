@@ -25,13 +25,13 @@ servers:
         default: mycompany
         description: Workday tenant name
 tags:
+  - name: Report Metadata
+    description: >-
+      Retrieve metadata about report fields, prompts, and filter parameters
   - name: Reports
     description: >-
       Execute and retrieve data from custom and standard Workday reports
       configured as web services
-  - name: Report Metadata
-    description: >-
-      Retrieve metadata about report fields, prompts, and filter parameters
 security:
   - basicAuth: []
   - bearerAuth: []
