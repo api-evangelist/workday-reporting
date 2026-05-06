@@ -4,111 +4,39 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Workday Reporting
 providerId: workday-reporting
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Analytics
-  - Business Intelligence
-  - Financial Reporting
-  - Hr Data
-  - Reporting
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Workday Reporting API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  - Analytics
+  - Reporting
+  - HR Data
+description: Workday does not publish a unified rate-limit policy for the Reporting, Prism Analytics,
+  WQL, RaaS, Custom Reports, or Advanced Reports APIs in any public-facing documentation. The Workday
+  Community reference (community.workday.com) is the canonical source and requires authenticated
+  customer access. Limits are tenant-scoped and described per integration in the gated docs.
+sources:
+  - https://community.workday.com/api
 responseCodes:
-  throttled: 429
-  quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Workday Report as a Service (RaaS)
-      - Workday Custom Reports API
-      - Workday Advanced Reports API
-      - Workday Prism Analytics REST API
-      - Workday Prism Analytics SOAP Web Service
-      - Workday WQL API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Workday Report as a Service (RaaS)
-      - Workday Custom Reports API
-      - Workday Advanced Reports API
-      - Workday Prism Analytics REST API
-      - Workday Prism Analytics SOAP Web Service
-      - Workday WQL API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Workday Report as a Service (RaaS)
-      - Workday Custom Reports API
-      - Workday Advanced Reports API
-      - Workday Prism Analytics REST API
-      - Workday Prism Analytics SOAP Web Service
-      - Workday WQL API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Workday Report as a Service (RaaS)
-      - Workday Custom Reports API
-      - Workday Advanced Reports API
-      - Workday Prism Analytics REST API
-      - Workday Prism Analytics SOAP Web Service
-      - Workday WQL API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Workday Report as a Service (RaaS)
-      - Workday Custom Reports API
-      - Workday Advanced Reports API
-      - Workday Prism Analytics REST API
-      - Workday Prism Analytics SOAP Web Service
-      - Workday WQL API
+  - name: Tenant-scoped throttling (see gated Workday Community documentation)
+    scope: tenant
+    metric: varies
+    limit: see https://community.workday.com/api
+    notes: Workday enforces tenant-level throttling and concurrency limits; specific values are
+      published only inside the authenticated Workday Community reference. Long-running report
+      executions and Prism dataset operations have their own concurrency caps documented per API.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Documentation gating
+    description: Workday API rate-limit policy is published only on community.workday.com, which
+      requires a customer login. No public per-second or per-minute numbers are available.
+  - name: Backoff
+    description: Standard guidance is exponential backoff with jitter on HTTP 503 and on documented
+      Workday throttling SOAP faults.
+  - name: Long-running operations
+    description: Report and Prism operations are asynchronous; concurrency is bounded by the tenant's
+      integration capacity rather than per-second request rates.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
