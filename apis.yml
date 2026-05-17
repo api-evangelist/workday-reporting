@@ -136,29 +136,29 @@ common:
     url: https://developer.workday.com
   - type: Community
     url: https://community.workday.com
-  - type: Getting Started
+  - type: GettingStarted
     url: https://community.workday.com/api-start
   - type: Documentation
     url: https://community.workday.com/api
   - type: Authentication
     url: https://doc.workday.com/admin-guide/en-us/lef1569276711011/kqh1569276711095.html
-  - type: Rate Limits
+  - type: RateLimits
     url: https://doc.workday.com/reader/J1YvI9CYZUWl1U7_PSHyHA/f8K9WJ7Kh5FfQDNnvlHNFQ
-  - type: Status
+  - type: StatusPage
     url: https://community.workday.com/trust/status
   - type: Support
     url: https://www.workday.com/en-us/customer-experience/support.html
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.workday.com/en-us/legal.html
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.workday.com/en-us/privacy.html
   - type: Blog
     url: https://blog.workday.com/en-us/application-development.html
   - type: Website
     url: https://www.workday.com
-  - type: Sign Up
+  - type: SignUp
     url: https://resourcecenter.workday.com/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/Workday
   - type: Reference
     url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
