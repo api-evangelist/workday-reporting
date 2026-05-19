@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Reporting Workday Report-as-a-Service (RaaS) API — Report Metadata
+  description: 'Workday Reporting Workday Report-as-a-Service (RaaS) API — Report Metadata. 1 operations. Lead operation:
+    Workday Reporting Get report field metadata. Self-contained Naftiko capability covering one Workday Reporting business
+    surface.'
+  tags:
+  - Workday Reporting
+  - Report Metadata
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_REPORTING_API_KEY: WORKDAY_REPORTING_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: raas-report-metadata
+    baseUri: https://wd2-impl-services1.workday.com/ccx/service/customreport2/{tenant}
+    description: Workday Reporting Workday Report-as-a-Service (RaaS) API — Report Metadata business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: reportOwner-reportName-fields
+      path: /{reportOwner}/{reportName}/fields
+      operations:
+      - name: getreportmetadata
+        method: GET
+        description: Workday Reporting Get report field metadata
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: reportOwner
+          in: path
+          type: string
+          description: Username of the report owner
+          required: true
+        - name: reportName
+          in: path
+          type: string
+          description: Name of the custom report
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_REPORTING_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: raas-report-metadata-rest
+    port: 8080
+    description: REST adapter for Workday Reporting Workday Report-as-a-Service (RaaS) API — Report Metadata. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/{reportowner}/{reportname}/fields
+      name: reportowner-reportname-fields
+      description: REST surface for reportOwner-reportName-fields.
+      operations:
+      - method: GET
+        name: getreportmetadata
+        description: Workday Reporting Get report field metadata
+        call: raas-report-metadata.getreportmetadata
+        with:
+          reportOwner: rest.reportOwner
+          reportName: rest.reportName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: raas-report-metadata-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Reporting Workday Report-as-a-Service (RaaS) API — Report Metadata. One tool per
+      consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: workday-reporting-get-report-field
+      description: Workday Reporting Get report field metadata
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: raas-report-metadata.getreportmetadata
+      with:
+        reportOwner: tools.reportOwner
+        reportName: tools.reportName
+      outputParameters:
+      - type: object
+        mapping: $.
