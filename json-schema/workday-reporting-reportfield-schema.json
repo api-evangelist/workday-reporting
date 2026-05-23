@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReportField",
+  "title": "ReportField",
+  "type": "object",
+  "description": "Definition of a single report output column",
+  "properties": {
+    "fieldName": {
+      "type": "string",
+      "description": "Column field name as it appears in the report output"
+    },
+    "fieldType": {
+      "type": "string",
+      "description": "Data type of the field such as Text, Numeric, Date, Boolean, or Currency"
+    },
+    "isRequired": {
+      "type": "boolean",
+      "description": "Whether the field is always present in the report output"
+    }
+  }
+}

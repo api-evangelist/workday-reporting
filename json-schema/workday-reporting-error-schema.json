@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Error",
+  "title": "Error",
+  "type": "object",
+  "description": "Error response returned by the Workday RaaS API",
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "Error code identifying the type of error"
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable error message with details about the failure"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReportPrompt",
+  "title": "ReportPrompt",
+  "type": "object",
+  "description": "Definition of a report prompt parameter that can be used for filtering report data when executing the report via the API",
+  "properties": {
+    "promptName": {
+      "type": "string",
+      "description": "Name of the prompt parameter to use as a query parameter in the report URL"
+    },
+    "promptType": {
+      "type": "string",
+      "description": "Data type expected for the prompt value"
+    },
+    "isRequired": {
+      "type": "boolean",
+      "description": "Whether the prompt must be provided when executing the report"
+    },
+    "defaultValue": {
+      "type": "string",
+      "description": "Default value used when the prompt is not specified"
+    }
+  }
+}

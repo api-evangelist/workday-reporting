@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReportResponse",
+  "title": "ReportResponse",
+  "type": "object",
+  "description": "Response object containing report data rows and pagination information. The Report_Entry array contains objects whose properties correspond to the report columns configured in Workday.",
+  "properties": {
+    "Report_Entry": {
+      "type": "array",
+      "description": "Array of report data rows",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "description": "A single report row. Properties vary based on the report columns configured in the Workday report definition."
+      }
+    },
+    "Report_Has_More_Rows": {
+      "type": "boolean",
+      "description": "Indicates whether additional rows are available beyond the current page for pagination"
+    },
+    "Report_Total_Rows": {
+      "type": "integer",
+      "description": "Total number of rows matching the report filter criteria"
+    }
+  }
+}

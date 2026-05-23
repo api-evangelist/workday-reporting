@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReportMetadata",
+  "title": "ReportMetadata",
+  "type": "object",
+  "description": "Metadata describing the structure of a Workday report, including its output fields and available prompt parameters for filtering.",
+  "properties": {
+    "reportName": {
+      "type": "string",
+      "description": "Name of the report as defined in Workday"
+    },
+    "reportOwner": {
+      "type": "string",
+      "description": "Username of the report owner"
+    },
+    "fields": {
+      "type": "array",
+      "description": "Report column definitions describing available output fields",
+      "items": {
+        "$ref": "#/components/schemas/ReportField"
+      }
+    },
+    "prompts": {
+      "type": "array",
+      "description": "Available filter prompt parameters that can be passed as query parameters when executing the report",
+      "items": {
+        "$ref": "#/components/schemas/ReportPrompt"
+      }
+    }
+  }
+}

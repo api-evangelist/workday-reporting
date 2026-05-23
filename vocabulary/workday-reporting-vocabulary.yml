@@ -1,0 +1,9 @@
+name: Workday Reporting Domain Vocabulary
+provider: Workday Reporting
+providerId: workday-reporting
+description: Tag-derived vocabulary for the Workday Reporting API surface; sourced from openapi/ tags.
+terms:
+- term: Report Metadata
+  description: Retrieve metadata about report fields, prompts, and filter parameters
+- term: Reports
+  description: Execute and retrieve data from custom and standard Workday reports configured as web services

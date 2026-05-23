@@ -1,0 +1,60 @@
+{
+  "provider": "Workday Reporting",
+  "providerId": "workday-reporting",
+  "kind": "json-structure",
+  "description": "Structural overview of the Workday Reporting API surface; extracted from openapi/.",
+  "schemaCount": 5,
+  "operationCount": 2,
+  "schemas": [
+    {
+      "name": "ReportResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ReportMetadata",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ReportField",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ReportPrompt",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/{reportOwner}/{reportName}",
+      "operationId": "getReport",
+      "summary": "Workday Reporting Get report data",
+      "tags": [
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{reportOwner}/{reportName}/fields",
+      "operationId": "getReportMetadata",
+      "summary": "Workday Reporting Get report field metadata",
+      "tags": [
+        "Report Metadata"
+      ]
+    }
+  ]
+}
