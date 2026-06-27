@@ -130,7 +130,7 @@ apis:
       - type: Authentication
         url: https://doc.workday.com/admin-guide/en-us/lef1569276711011/kqh1569276711095.html
 common:
-  - type: Developer Portal
+  - type: DeveloperPortal
     url: https://developer.workday.com
   - type: Community
     url: https://community.workday.com
@@ -154,7 +154,7 @@ common:
     url: https://blog.workday.com/en-us/application-development.html
   - type: Website
     url: https://www.workday.com
-  - type: SignUp
+  - type: Signup
     url: https://resourcecenter.workday.com/
   - type: GitHubOrganization
     url: https://github.com/Workday
