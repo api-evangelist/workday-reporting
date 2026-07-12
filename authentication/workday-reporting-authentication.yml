@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/workday-reporting-raas-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication using Workday integration system user credentials (ISU
+    username and password).
+  sources:
+  - openapi/workday-reporting-raas-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: OAuth 2.0 bearer token obtained via Workday authentication for report access.
+  sources:
+  - openapi/workday-reporting-raas-openapi.yml

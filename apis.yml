@@ -130,6 +130,12 @@ apis:
       - type: Authentication
         url: https://doc.workday.com/admin-guide/en-us/lef1569276711011/kqh1569276711095.html
 common:
+  - type: TrustCenter
+    url: security/workday-reporting-trust-center.yml
+  - type: DomainSecurity
+    url: security/workday-reporting-domain-security.yml
+  - type: Authentication
+    url: authentication/workday-reporting-authentication.yml
   - type: DeveloperPortal
     url: https://developer.workday.com
   - type: Community
