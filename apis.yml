@@ -130,6 +130,8 @@ apis:
       - type: Authentication
         url: https://doc.workday.com/admin-guide/en-us/lef1569276711011/kqh1569276711095.html
 common:
+  - type: AgenticAccess
+    url: agentic-access/workday-reporting-agentic-access.yml
   - type: TrustCenter
     url: security/workday-reporting-trust-center.yml
   - type: DomainSecurity
