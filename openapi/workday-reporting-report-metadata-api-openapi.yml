@@ -1,0 +1,137 @@
+openapi: 3.1.0
+info:
+  title: Workday Reporting Workday Report-as-a-Service (RaaS) Report Metadata API
+  description: REST API for accessing Workday custom and standard reports as RESTful web services. Enables external systems to consume report data in JSON, CSV, or XML formats. Reports must be configured as Advanced type reports with web service enabled in Workday before they can be accessed through this API. Supports prompt-based filtering through query parameters matching report prompt names configured in the report definition.
+  version: v1
+  contact:
+    name: Workday Support
+    email: support@workday.com
+    url: https://www.workday.com/en-us/customer-experience/support.html
+  termsOfService: https://www.workday.com/en-us/legal.html
+servers:
+- url: https://wd2-impl-services1.workday.com/ccx/service/customreport2/{tenant}
+  description: Workday Custom Reports Endpoint
+  variables:
+    tenant:
+      default: mycompany
+      description: Workday tenant name
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Report Metadata
+  description: Retrieve metadata about report fields, prompts, and filter parameters
+paths:
+  /{reportOwner}/{reportName}/fields:
+    get:
+      operationId: getReportMetadata
+      summary: Workday Reporting Get report field metadata
+      description: Retrieve metadata about a report including available output fields, field data types, and prompt parameters that can be used for filtering. Useful for discovering the structure of a report before executing it, and for building dynamic integrations that adapt to report schema changes.
+      tags:
+      - Report Metadata
+      parameters:
+      - name: reportOwner
+        in: path
+        required: true
+        description: Username of the report owner
+        schema:
+          type: string
+      - name: reportName
+        in: path
+        required: true
+        description: Name of the custom report
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Report metadata returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportMetadata'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Report not found or web service not enabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ReportMetadata:
+      type: object
+      description: Metadata describing the structure of a Workday report, including its output fields and available prompt parameters for filtering.
+      properties:
+        reportName:
+          type: string
+          description: Name of the report as defined in Workday
+        reportOwner:
+          type: string
+          description: Username of the report owner
+        fields:
+          type: array
+          description: Report column definitions describing available output fields
+          items:
+            $ref: '#/components/schemas/ReportField'
+        prompts:
+          type: array
+          description: Available filter prompt parameters that can be passed as query parameters when executing the report
+          items:
+            $ref: '#/components/schemas/ReportPrompt'
+    ReportField:
+      type: object
+      description: Definition of a single report output column
+      properties:
+        fieldName:
+          type: string
+          description: Column field name as it appears in the report output
+        fieldType:
+          type: string
+          description: Data type of the field such as Text, Numeric, Date, Boolean, or Currency
+        isRequired:
+          type: boolean
+          description: Whether the field is always present in the report output
+    ReportPrompt:
+      type: object
+      description: Definition of a report prompt parameter that can be used for filtering report data when executing the report via the API
+      properties:
+        promptName:
+          type: string
+          description: Name of the prompt parameter to use as a query parameter in the report URL
+        promptType:
+          type: string
+          description: Data type expected for the prompt value
+        isRequired:
+          type: boolean
+          description: Whether the prompt must be provided when executing the report
+        defaultValue:
+          type: string
+          description: Default value used when the prompt is not specified
+    Error:
+      type: object
+      description: Error response returned by the Workday RaaS API
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message with details about the failure
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using Workday integration system user credentials (ISU username and password).
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token obtained via Workday authentication for report access.
+externalDocs:
+  description: Workday RaaS Documentation
+  url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Reporting/v1/index.html
