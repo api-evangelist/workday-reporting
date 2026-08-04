@@ -1,0 +1,16 @@
+{
+  "provider": "workday-reporting",
+  "sources": [
+    "workday-reporting-report-metadata-api-openapi.yml",
+    "workday-reporting-reports-api-openapi.yml"
+  ],
+  "outputs": [
+    "workday-reporting-report-metadata-api-openapi.yml",
+    "workday-reporting-reports-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

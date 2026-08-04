@@ -1,0 +1,550 @@
+{
+  "info": {
+    "_postman_id": "34b5d919-c424-43b4-9baf-4df96ce18427",
+    "name": "Workday Reporting Workday Report-as-a-Service (RaaS) Report Metadata Reports API",
+    "description": "REST API for accessing Workday custom and standard reports as RESTful web services. Enables external systems to consume report data in JSON, CSV, or XML formats. Reports must be configured as Advanced type reports with web service enabled in Workday before they can be accessed through this API. Supports prompt-based filtering through query parameters matching report prompt names configured in the report definition.\n\nContact Support:\n Name: Workday Support\n Email: support@workday.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:32:12.000Z",
+    "updatedAt": "2026-07-28T03:32:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-34b5d919-c424-43b4-9baf-4df96ce18427"
+  },
+  "item": [
+    {
+      "name": "{reportOwner}",
+      "item": [
+        {
+          "name": "{reportName}",
+          "item": [
+            {
+              "name": "Workday Reporting Get report data",
+              "id": "c8729f1a-56ef-4ded-af3f-a7aca14f09d1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:reportOwner/:reportName?format=json&Employee_ID=<string>&Effective_Date=<date>&Organization=<string>&limit=100&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":reportOwner",
+                    ":reportName"
+                  ],
+                  "query": [
+                    {
+                      "description": "Response format for the report data. Determines the Content-Type of the response body.",
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "description": "Example prompt parameter for filtering by Employee ID. Actual parameters depend on the prompts configured in the report definition.",
+                      "key": "Employee_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Example prompt parameter for filtering by effective date in YYYY-MM-DD format. Actual parameters depend on the prompts configured in the report definition.",
+                      "key": "Effective_Date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Example prompt parameter for filtering by organization WID or reference ID. Actual parameters depend on the prompts configured in the report definition.",
+                      "key": "Organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of rows to return per page",
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Number of rows to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "26e42e1d-f979-449e-923a-6fce32c8e6a4",
+                      "key": "reportOwner",
+                      "value": "<string>",
+                      "description": "(Required) Username of the report owner in Workday, typically the integration system user (ISU) account that owns the report"
+                    },
+                    {
+                      "id": "5f7ad47e-1721-4d7f-af51-a232b26a4351",
+                      "key": "reportName",
+                      "value": "<string>",
+                      "description": "(Required) Name of the custom report as defined in Workday. Must match the report name exactly, using underscores in place of spaces."
+                    }
+                  ]
+                },
+                "description": "Execute a Workday custom report and retrieve its data. The report must have web service enabled in its report definition. Returns data in JSON format by default, with support for CSV, XML, and GData formats via the format parameter. Supports prompt-based filtering through query parameters that match the report prompt names configured in Workday. Pagination is supported through limit and offset parameters for large result sets."
+              },
+              "response": [
+                {
+                  "id": "1005d29c-1cdd-48fb-9364-f6f50cfa3faf",
+                  "name": "Report data returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:reportOwner/:reportName?format=json&Employee_ID=<string>&Effective_Date=<date>&Organization=<string>&limit=100&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":reportOwner",
+                        ":reportName"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format for the report data. Determines the Content-Type of the response body.",
+                          "key": "format",
+                          "value": "json"
+                        },
+                        {
+                          "description": "Example prompt parameter for filtering by Employee ID. Actual parameters depend on the prompts configured in the report definition.",
+                          "key": "Employee_ID",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Example prompt parameter for filtering by effective date in YYYY-MM-DD format. Actual parameters depend on the prompts configured in the report definition.",
+                          "key": "Effective_Date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Example prompt parameter for filtering by organization WID or reference ID. Actual parameters depend on the prompts configured in the report definition.",
+                          "key": "Organization",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of rows to return per page",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Number of rows to skip for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportOwner"
+                        },
+                        {
+                          "key": "reportName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"Report_Entry\": [\n    {\n      \"officia_ff\": true,\n      \"Duis9\": -60114936.063729994\n    },\n    {\n      \"occaecat8\": false,\n      \"aliqua_f\": -2640472\n    }\n  ],\n  \"Report_Has_More_Rows\": \"<boolean>\",\n  \"Report_Total_Rows\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:32:13.000Z",
+                  "updatedAt": "2026-07-28T03:32:13.000Z",
+                  "uid": "35240-1005d29c-1cdd-48fb-9364-f6f50cfa3faf"
+                },
+                {
+                  "id": "9fedaacc-0e92-4097-b41a-1564773788e7",
+                  "name": "Invalid report parameters or prompt values",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:reportOwner/:reportName?format=json&Employee_ID=<string>&Effective_Date=<date>&Organization=<string>&limit=100&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":reportOwner",
+                        ":reportName"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format for the report data. Determines the Content-Type of the response body.",
+                          "key": "format",
+                          "value": "json"
+                        },
+                        {
+                          "description": "Example prompt parameter for filtering by Employee ID. Actual parameters depend on the prompts configured in the report definition.",
+                          "key": "Employee_ID",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Example prompt parameter for filtering by effective date in YYYY-MM-DD format. Actual parameters depend on the prompts configured in the report definition.",
+                          "key": "Effective_Date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Example prompt parameter for filtering by organization WID or reference ID. Actual parameters depend on the prompts configured in the report definition.",
+                          "key": "Organization",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of rows to return per page",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Number of rows to skip for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportOwner"
+                        },
+                        {
+                          "key": "reportName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:32:13.000Z",
+                  "updatedAt": "2026-07-28T03:32:13.000Z",
+                  "uid": "35240-9fedaacc-0e92-4097-b41a-1564773788e7"
+                },
+                {
+                  "id": "711f2d6b-c459-48cb-bd0e-2126b5a89b61",
+                  "name": "Authentication credentials missing or invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:reportOwner/:reportName?format=json&Employee_ID=<string>&Effective_Date=<date>&Organization=<string>&limit=100&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":reportOwner",
+                        ":reportName"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format for the report data. Determines the Content-Type of the response body.",
+                          "key": "format",
+                          "value": "json"
+                        },
+                        {
+                          "description": "Example prompt parameter for filtering by Employee ID. Actual parameters depend on the prompts configured in the report definition.",
+                          "key": "Employee_ID",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Example prompt parameter for filtering by effective date in YYYY-MM-DD format. Actual parameters depend on the prompts configured in the report definition.",
+                          "key": "Effective_Date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Example prompt parameter for filtering by organization WID or reference ID. Actual parameters depend on the prompts configured in the report definition.",
+                          "key": "Organization",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of rows to return per page",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Number of rows to skip for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportOwner"
+                        },
+                        {
+                          "key": "reportName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:32:13.000Z",
+                  "updatedAt": "2026-07-28T03:32:13.000Z",
+                  "uid": "35240-711f2d6b-c459-48cb-bd0e-2126b5a89b61"
+                },
+                {
+                  "id": "2b0f8fa3-f228-4aa3-9b5d-661ed4abfa65",
+                  "name": "Insufficient permissions to access the report",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:reportOwner/:reportName?format=json&Employee_ID=<string>&Effective_Date=<date>&Organization=<string>&limit=100&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":reportOwner",
+                        ":reportName"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format for the report data. Determines the Content-Type of the response body.",
+                          "key": "format",
+                          "value": "json"
+                        },
+                        {
+                          "description": "Example prompt parameter for filtering by Employee ID. Actual parameters depend on the prompts configured in the report definition.",
+                          "key": "Employee_ID",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Example prompt parameter for filtering by effective date in YYYY-MM-DD format. Actual parameters depend on the prompts configured in the report definition.",
+                          "key": "Effective_Date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Example prompt parameter for filtering by organization WID or reference ID. Actual parameters depend on the prompts configured in the report definition.",
+                          "key": "Organization",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of rows to return per page",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Number of rows to skip for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportOwner"
+                        },
+                        {
+                          "key": "reportName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:32:13.000Z",
+                  "updatedAt": "2026-07-28T03:32:13.000Z",
+                  "uid": "35240-2b0f8fa3-f228-4aa3-9b5d-661ed4abfa65"
+                },
+                {
+                  "id": "211a80fa-4b8f-480b-bc53-961b6e519608",
+                  "name": "Report not found or web service not enabled for this report",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:reportOwner/:reportName?format=json&Employee_ID=<string>&Effective_Date=<date>&Organization=<string>&limit=100&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":reportOwner",
+                        ":reportName"
+                      ],
+                      "query": [
+                        {
+                          "description": "Response format for the report data. Determines the Content-Type of the response body.",
+                          "key": "format",
+                          "value": "json"
+                        },
+                        {
+                          "description": "Example prompt parameter for filtering by Employee ID. Actual parameters depend on the prompts configured in the report definition.",
+                          "key": "Employee_ID",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Example prompt parameter for filtering by effective date in YYYY-MM-DD format. Actual parameters depend on the prompts configured in the report definition.",
+                          "key": "Effective_Date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Example prompt parameter for filtering by organization WID or reference ID. Actual parameters depend on the prompts configured in the report definition.",
+                          "key": "Organization",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of rows to return per page",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Number of rows to skip for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportOwner"
+                        },
+                        {
+                          "key": "reportName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:32:13.000Z",
+                  "updatedAt": "2026-07-28T03:32:13.000Z",
+                  "uid": "35240-211a80fa-4b8f-480b-bc53-961b6e519608"
+                }
+              ],
+              "createdAt": "2026-07-28T03:32:13.000Z",
+              "updatedAt": "2026-07-28T03:32:13.000Z",
+              "uid": "35240-c8729f1a-56ef-4ded-af3f-a7aca14f09d1"
+            }
+          ],
+          "id": "2d520a38-617c-461a-9538-99e15cd71fe5",
+          "createdAt": "2026-07-28T03:32:13.000Z",
+          "updatedAt": "2026-07-28T03:32:13.000Z",
+          "uid": "35240-2d520a38-617c-461a-9538-99e15cd71fe5"
+        }
+      ],
+      "id": "23d5c717-f169-4b44-8066-cc1b9a3fa026",
+      "createdAt": "2026-07-28T03:32:13.000Z",
+      "updatedAt": "2026-07-28T03:32:13.000Z",
+      "uid": "35240-23d5c717-f169-4b44-8066-cc1b9a3fa026"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "tenant",
+      "value": "mycompany"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://wd2-impl-services1.workday.com/ccx/service/customreport2/{{tenant}}"
+    }
+  ]
+}

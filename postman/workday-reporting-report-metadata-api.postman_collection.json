@@ -1,0 +1,269 @@
+{
+  "info": {
+    "_postman_id": "0f391c9d-604c-4068-a9f4-2ec6f95cb253",
+    "name": "Workday Reporting Workday Report-as-a-Service (RaaS) Report Metadata API",
+    "description": "REST API for accessing Workday custom and standard reports as RESTful web services. Enables external systems to consume report data in JSON, CSV, or XML formats. Reports must be configured as Advanced type reports with web service enabled in Workday before they can be accessed through this API. Supports prompt-based filtering through query parameters matching report prompt names configured in the report definition.\n\nContact Support:\n Name: Workday Support\n Email: support@workday.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:32:11.000Z",
+    "updatedAt": "2026-07-28T03:32:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0f391c9d-604c-4068-a9f4-2ec6f95cb253"
+  },
+  "item": [
+    {
+      "name": "{reportOwner}",
+      "item": [
+        {
+          "name": "{reportName}",
+          "item": [
+            {
+              "name": "fields",
+              "item": [
+                {
+                  "name": "Workday Reporting Get report field metadata",
+                  "id": "74c67d44-41f3-4c63-9db6-630f8d6233c1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:reportOwner/:reportName/fields",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":reportOwner",
+                        ":reportName",
+                        "fields"
+                      ],
+                      "variable": [
+                        {
+                          "id": "413599e0-850e-401e-a328-2aa9c9c56949",
+                          "key": "reportOwner",
+                          "value": "<string>",
+                          "description": "(Required) Username of the report owner"
+                        },
+                        {
+                          "id": "3edcf5a5-fabc-45ff-b40c-4e609d869aec",
+                          "key": "reportName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the custom report"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve metadata about a report including available output fields, field data types, and prompt parameters that can be used for filtering. Useful for discovering the structure of a report before executing it, and for building dynamic integrations that adapt to report schema changes."
+                  },
+                  "response": [
+                    {
+                      "id": "fd6cf1fb-a783-44a4-b419-2e14523e09a6",
+                      "name": "Report metadata returned successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:reportOwner/:reportName/fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":reportOwner",
+                            ":reportName",
+                            "fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportOwner"
+                            },
+                            {
+                              "key": "reportName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reportName\": \"<string>\",\n  \"reportOwner\": \"<string>\",\n  \"fields\": [\n    {\n      \"fieldName\": \"<string>\",\n      \"fieldType\": \"<string>\",\n      \"isRequired\": \"<boolean>\"\n    },\n    {\n      \"fieldName\": \"<string>\",\n      \"fieldType\": \"<string>\",\n      \"isRequired\": \"<boolean>\"\n    }\n  ],\n  \"prompts\": [\n    {\n      \"promptName\": \"<string>\",\n      \"promptType\": \"<string>\",\n      \"isRequired\": \"<boolean>\",\n      \"defaultValue\": \"<string>\"\n    },\n    {\n      \"promptName\": \"<string>\",\n      \"promptType\": \"<string>\",\n      \"isRequired\": \"<boolean>\",\n      \"defaultValue\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:32:12.000Z",
+                      "updatedAt": "2026-07-28T03:32:12.000Z",
+                      "uid": "35240-fd6cf1fb-a783-44a4-b419-2e14523e09a6"
+                    },
+                    {
+                      "id": "3640e214-4c9a-418d-ab8d-938a048483a5",
+                      "name": "Authentication credentials missing or invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:reportOwner/:reportName/fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":reportOwner",
+                            ":reportName",
+                            "fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportOwner"
+                            },
+                            {
+                              "key": "reportName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:32:12.000Z",
+                      "updatedAt": "2026-07-28T03:32:12.000Z",
+                      "uid": "35240-3640e214-4c9a-418d-ab8d-938a048483a5"
+                    },
+                    {
+                      "id": "737005f9-f8ec-45f6-a63a-11318831bd16",
+                      "name": "Report not found or web service not enabled",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:reportOwner/:reportName/fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":reportOwner",
+                            ":reportName",
+                            "fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportOwner"
+                            },
+                            {
+                              "key": "reportName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:32:12.000Z",
+                      "updatedAt": "2026-07-28T03:32:12.000Z",
+                      "uid": "35240-737005f9-f8ec-45f6-a63a-11318831bd16"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:32:12.000Z",
+                  "updatedAt": "2026-07-28T03:32:12.000Z",
+                  "uid": "35240-74c67d44-41f3-4c63-9db6-630f8d6233c1"
+                }
+              ],
+              "id": "35396001-36ed-4589-bd02-5a79bbb03087",
+              "createdAt": "2026-07-28T03:32:12.000Z",
+              "updatedAt": "2026-07-28T03:32:12.000Z",
+              "uid": "35240-35396001-36ed-4589-bd02-5a79bbb03087"
+            }
+          ],
+          "id": "276114a9-664c-461f-b67b-4041fbef4a3d",
+          "createdAt": "2026-07-28T03:32:12.000Z",
+          "updatedAt": "2026-07-28T03:32:12.000Z",
+          "uid": "35240-276114a9-664c-461f-b67b-4041fbef4a3d"
+        }
+      ],
+      "id": "55581671-c09b-43bd-a19d-67209f5ca718",
+      "createdAt": "2026-07-28T03:32:12.000Z",
+      "updatedAt": "2026-07-28T03:32:12.000Z",
+      "uid": "35240-55581671-c09b-43bd-a19d-67209f5ca718"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "tenant",
+      "value": "mycompany"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://wd2-impl-services1.workday.com/ccx/service/customreport2/{{tenant}}"
+    }
+  ]
+}
