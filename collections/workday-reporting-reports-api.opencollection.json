@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Workday Reporting Workday Report-as-a-Service (RaaS) Report Metadata Reports API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Reporting Get report data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wd2-impl-services1.workday.com/ccx/service/customreport2/{tenant}/:reportOwner/:reportName",
+            "params": [
+              {
+                "name": "reportOwner",
+                "value": "",
+                "type": "path",
+                "description": "Username of the report owner in Workday, typically the integration system user (ISU) account that owns the report"
+              },
+              {
+                "name": "reportName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the custom report as defined in Workday. Must match the report name exactly, using underscores in place of spaces."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format for the report data. Determines the Content-Type of the response body."
+              },
+              {
+                "name": "Employee_ID",
+                "value": "",
+                "type": "query",
+                "description": "Example prompt parameter for filtering by Employee ID. Actual parameters depend on the prompts configured in the report definition."
+              },
+              {
+                "name": "Effective_Date",
+                "value": "",
+                "type": "query",
+                "description": "Example prompt parameter for filtering by effective date in YYYY-MM-DD format. Actual parameters depend on the prompts configured in the report definition."
+              },
+              {
+                "name": "Organization",
+                "value": "",
+                "type": "query",
+                "description": "Example prompt parameter for filtering by organization WID or reference ID. Actual parameters depend on the prompts configured in the report definition."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of rows to return per page"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of rows to skip for pagination"
+              }
+            ]
+          },
+          "docs": "Execute a Workday custom report and retrieve its data. The report must have web service enabled in its report definition. Returns data in JSON format by default, with support for CSV, XML, and GData formats via the format parameter. Supports prompt-based filtering through query parameters that match the report prompt names configured in Workday. Pagination is supported through limit and offset parameters for large result sets."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

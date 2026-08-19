@@ -1,0 +1,598 @@
+{
+  "item": [
+    {
+      "id": "539ccd1b-102e-4c45-8b3c-daf2e9cd3e4d",
+      "name": "Reports",
+      "description": {
+        "content": "Execute and retrieve data from custom and standard Workday reports configured as web services",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f2fac2a2-8486-4a3d-ad78-9b8777e7d57c",
+          "name": "Workday Reporting Get report data",
+          "request": {
+            "name": "Workday Reporting Get report data",
+            "description": {
+              "content": "Execute a Workday custom report and retrieve its data. The report must have web service enabled in its report definition. Returns data in JSON format by default, with support for CSV, XML, and GData formats via the format parameter. Supports prompt-based filtering through query parameters that match the report prompt names configured in Workday. Pagination is supported through limit and offset parameters for large result sets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":reportOwner",
+                ":reportName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format for the report data. Determines the Content-Type of the response body."
+                },
+                {
+                  "disabled": false,
+                  "key": "Employee_ID",
+                  "value": "<string>",
+                  "description": "Example prompt parameter for filtering by Employee ID. Actual parameters depend on the prompts configured in the report definition."
+                },
+                {
+                  "disabled": false,
+                  "key": "Effective_Date",
+                  "value": "<date>",
+                  "description": "Example prompt parameter for filtering by effective date in YYYY-MM-DD format. Actual parameters depend on the prompts configured in the report definition."
+                },
+                {
+                  "disabled": false,
+                  "key": "Organization",
+                  "value": "<string>",
+                  "description": "Example prompt parameter for filtering by organization WID or reference ID. Actual parameters depend on the prompts configured in the report definition."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of rows to return per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of rows to skip for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportOwner",
+                  "description": "(Required) Username of the report owner in Workday, typically the integration system user (ISU) account that owns the report"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportName",
+                  "description": "(Required) Name of the custom report as defined in Workday. Must match the report name exactly, using underscores in place of spaces."
+                },
+                {
+                  "description": "Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5ce2f8d-422a-4929-9a59-2d4b05a298ab",
+              "name": "Report data returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":reportOwner",
+                    ":reportName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "Employee_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Effective_Date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "Organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportOwner",
+                      "description": "(Required) Username of the report owner in Workday, typically the integration system user (ISU) account that owns the report"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportName",
+                      "description": "(Required) Name of the custom report as defined in Workday. Must match the report name exactly, using underscores in place of spaces."
+                    },
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Report_Entry\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": false\n    }\n  ],\n  \"Report_Has_More_Rows\": true,\n  \"Report_Total_Rows\": 7805\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50a80ec2-3678-4428-8d7d-7eba73e9d1bd",
+              "name": "Invalid report parameters or prompt values",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":reportOwner",
+                    ":reportName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "Employee_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Effective_Date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "Organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportOwner",
+                      "description": "(Required) Username of the report owner in Workday, typically the integration system user (ISU) account that owns the report"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportName",
+                      "description": "(Required) Name of the custom report as defined in Workday. Must match the report name exactly, using underscores in place of spaces."
+                    },
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ecf8e5a-e810-48b9-be55-d82c7ff52c9a",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":reportOwner",
+                    ":reportName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "Employee_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Effective_Date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "Organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportOwner",
+                      "description": "(Required) Username of the report owner in Workday, typically the integration system user (ISU) account that owns the report"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportName",
+                      "description": "(Required) Name of the custom report as defined in Workday. Must match the report name exactly, using underscores in place of spaces."
+                    },
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29fecedb-420e-40b0-b2bf-084b7e944c54",
+              "name": "Insufficient permissions to access the report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":reportOwner",
+                    ":reportName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "Employee_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Effective_Date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "Organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportOwner",
+                      "description": "(Required) Username of the report owner in Workday, typically the integration system user (ISU) account that owns the report"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportName",
+                      "description": "(Required) Name of the custom report as defined in Workday. Must match the report name exactly, using underscores in place of spaces."
+                    },
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d9593e2-ed1d-496c-a1fb-dada0b7d78e3",
+              "name": "Report not found or web service not enabled for this report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":reportOwner",
+                    ":reportName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "Employee_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Effective_Date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "Organization",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportOwner",
+                      "description": "(Required) Username of the report owner in Workday, typically the integration system user (ISU) account that owns the report"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportName",
+                      "description": "(Required) Name of the custom report as defined in Workday. Must match the report name exactly, using underscores in place of spaces."
+                    },
+                    {
+                      "description": "Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Workday tenant name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mycompany",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://wd2-impl-services1.workday.com/ccx/service/customreport2/{{tenant}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f5613905-2aae-40d6-a987-0cefcb3ebd7e",
+    "name": "Workday Reporting Workday Report-as-a-Service (RaaS) Report Metadata Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for accessing Workday custom and standard reports as RESTful web services. Enables external systems to consume report data in JSON, CSV, or XML formats. Reports must be configured as Advanced type reports with web service enabled in Workday before they can be accessed through this API. Supports prompt-based filtering through query parameters matching report prompt names configured in the report definition.\n\nContact Support:\n Name: Workday Support\n Email: support@workday.com",
+      "type": "text/plain"
+    }
+  }
+}
