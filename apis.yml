@@ -25,6 +25,12 @@ tags:
   - Analytics
   - Business Intelligence
   - Financial Reporting
+  - HR Data
+  - Reporting
+tags_raw:
+  - Analytics
+  - Business Intelligence
+  - Financial Reporting
   - Hr Data
   - Reporting
 apis:
@@ -34,6 +40,10 @@ apis:
   humanURL: https://doc.workday.com/reader/J1YvI9CYZUWl1U7_PSHyHA/sxVLLu9fFSJM5BffiOZwmA
   baseURL: https://wd2-impl-services1.workday.com/ccx/service/{tenant}
   tags:
+  - Custom Reports
+  - Report Execution
+  - SOAP
+  tags_raw:
   - Custom Reports
   - Report Execution
   - Soap
