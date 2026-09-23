@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Workday Reporting Workday Report-as-a-Service (RaaS) Report Metadata API
+  title: Workday Reporting Workday Report-as-a-Service (RaaS) Report…
   description: REST API for accessing Workday custom and standard reports as RESTful web services. Enables external systems to consume report data in JSON, CSV, or XML formats. Reports must be configured as Advanced type reports with web service enabled in Workday before they can be accessed through this API. Supports prompt-based filtering through query parameters matching report prompt names configured in the report definition.
   version: v1
   contact:
@@ -63,6 +63,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    ReportField:
+      type: object
+      description: Definition of a single report output column
+      properties:
+        fieldName:
+          type: string
+          description: Column field name as it appears in the report output
+        fieldType:
+          type: string
+          description: Data type of the field such as Text, Numeric, Date, Boolean, or Currency
+        isRequired:
+          type: boolean
+          description: Whether the field is always present in the report output
     ReportMetadata:
       type: object
       description: Metadata describing the structure of a Workday report, including its output fields and available prompt parameters for filtering.
@@ -83,19 +96,6 @@ components:
           description: Available filter prompt parameters that can be passed as query parameters when executing the report
           items:
             $ref: '#/components/schemas/ReportPrompt'
-    ReportField:
-      type: object
-      description: Definition of a single report output column
-      properties:
-        fieldName:
-          type: string
-          description: Column field name as it appears in the report output
-        fieldType:
-          type: string
-          description: Data type of the field such as Text, Numeric, Date, Boolean, or Currency
-        isRequired:
-          type: boolean
-          description: Whether the field is always present in the report output
     ReportPrompt:
       type: object
       description: Definition of a report prompt parameter that can be used for filtering report data when executing the report via the API
