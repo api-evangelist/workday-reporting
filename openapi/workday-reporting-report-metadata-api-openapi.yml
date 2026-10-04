@@ -63,6 +63,22 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    ReportPrompt:
+      type: object
+      description: Definition of a report prompt parameter that can be used for filtering report data when executing the report via the API
+      properties:
+        promptName:
+          type: string
+          description: Name of the prompt parameter to use as a query parameter in the report URL
+        promptType:
+          type: string
+          description: Data type expected for the prompt value
+        isRequired:
+          type: boolean
+          description: Whether the prompt must be provided when executing the report
+        defaultValue:
+          type: string
+          description: Default value used when the prompt is not specified
     ReportMetadata:
       type: object
       description: Metadata describing the structure of a Workday report, including its output fields and available prompt parameters for filtering.
@@ -83,6 +99,16 @@ components:
           description: Available filter prompt parameters that can be passed as query parameters when executing the report
           items:
             $ref: '#/components/schemas/ReportPrompt'
+    Error:
+      type: object
+      description: Error response returned by the Workday RaaS API
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message with details about the failure
     ReportField:
       type: object
       description: Definition of a single report output column
@@ -96,32 +122,6 @@ components:
         isRequired:
           type: boolean
           description: Whether the field is always present in the report output
-    ReportPrompt:
-      type: object
-      description: Definition of a report prompt parameter that can be used for filtering report data when executing the report via the API
-      properties:
-        promptName:
-          type: string
-          description: Name of the prompt parameter to use as a query parameter in the report URL
-        promptType:
-          type: string
-          description: Data type expected for the prompt value
-        isRequired:
-          type: boolean
-          description: Whether the prompt must be provided when executing the report
-        defaultValue:
-          type: string
-          description: Default value used when the prompt is not specified
-    Error:
-      type: object
-      description: Error response returned by the Workday RaaS API
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error
-        message:
-          type: string
-          description: Human-readable error message with details about the failure
   securitySchemes:
     basicAuth:
       type: http

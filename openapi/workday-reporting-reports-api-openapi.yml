@@ -111,23 +111,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  parameters:
-    offset:
-      name: offset
-      in: query
-      description: Number of rows to skip for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of rows to return per page
-      schema:
-        type: integer
-        minimum: 1
-        default: 100
   schemas:
     ReportResponse:
       type: object
@@ -156,6 +139,23 @@ components:
         message:
           type: string
           description: Human-readable error message with details about the failure
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of rows to return per page
+      schema:
+        type: integer
+        minimum: 1
+        default: 100
+    offset:
+      name: offset
+      in: query
+      description: Number of rows to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     basicAuth:
       type: http
