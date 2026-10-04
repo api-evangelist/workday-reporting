@@ -183,6 +183,9 @@ apis:
   - type: Client Libraries
     url: https://github.com/Workday/raas-python
 common:
+  - type: CapabilityMap
+    url: capabilities/workday-reporting-capability-edges.yml
+    name: Workday Reporting Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/workday-reporting/overview
   - type: AgenticAccess
