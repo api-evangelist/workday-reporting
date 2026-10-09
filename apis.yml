@@ -183,6 +183,10 @@ apis:
   - type: Client Libraries
     url: https://github.com/Workday/raas-python
 common:
+  - type: Plans
+    url: plans/workday-reporting-plans-pricing.yml
+  - type: FinOps
+    url: finops/workday-reporting-finops.yml
   - type: CapabilityMap
     url: capabilities/workday-reporting-capability-edges.yml
     name: Workday Reporting Business Capability Map
