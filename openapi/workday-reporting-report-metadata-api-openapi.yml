@@ -79,6 +79,19 @@ components:
         defaultValue:
           type: string
           description: Default value used when the prompt is not specified
+    ReportField:
+      type: object
+      description: Definition of a single report output column
+      properties:
+        fieldName:
+          type: string
+          description: Column field name as it appears in the report output
+        fieldType:
+          type: string
+          description: Data type of the field such as Text, Numeric, Date, Boolean, or Currency
+        isRequired:
+          type: boolean
+          description: Whether the field is always present in the report output
     ReportMetadata:
       type: object
       description: Metadata describing the structure of a Workday report, including its output fields and available prompt parameters for filtering.
@@ -109,19 +122,6 @@ components:
         message:
           type: string
           description: Human-readable error message with details about the failure
-    ReportField:
-      type: object
-      description: Definition of a single report output column
-      properties:
-        fieldName:
-          type: string
-          description: Column field name as it appears in the report output
-        fieldType:
-          type: string
-          description: Data type of the field such as Text, Numeric, Date, Boolean, or Currency
-        isRequired:
-          type: boolean
-          description: Whether the field is always present in the report output
   securitySchemes:
     basicAuth:
       type: http
